@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());*/
 
         contactAdapter=new ContactAdapter(contactArrayList);
-        //recyclerView.setAdapter(contactAdapter);
+        recyclerView.setAdapter(contactAdapter);
 
         //Database for data
        /* contactAppDatabase = Room.databaseBuilder(
@@ -169,14 +169,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 //OnBackground
-              //  contactArrayList.addAll(contactAppDatabase.getContactDAO().getAllContacts());
+                contactArrayList.addAll(contactAppDatabase.getContactDAO().getAll());
                 Log.v("TEST", "run:in load data ");
                 //on Post Execution
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                       // contactAdapter.setContacts(contactArrayList);
-                       // contactAdapter.notifyDataSetChanged();
+                       contactAdapter.setContacts(contactArrayList);
+                       contactAdapter.notifyDataSetChanged();
                     }
                 });
 

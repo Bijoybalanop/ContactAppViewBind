@@ -1,11 +1,16 @@
 package com.example.contactappviewbind.db.entity;
+import androidx.annotation.NonNull;
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 
 
+
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.contactappviewbind.BR;
 
@@ -15,7 +20,9 @@ public class Contact extends BaseObservable {
 
     @PrimaryKey(autoGenerate = true)
     int id;
+    @ColumnInfo(name="name")
     String name;
+    @ColumnInfo(name="email")
     String email;
 
 
@@ -70,6 +77,16 @@ public class Contact extends BaseObservable {
         notifyPropertyChanged(BR.id);
 
     }
+
+
+    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(
+                    "ALTER TABLE Song ADD COLUMN tag TEXT NOT NULL DEFAULT ''");
+        }
+    };
+
 }
 
 

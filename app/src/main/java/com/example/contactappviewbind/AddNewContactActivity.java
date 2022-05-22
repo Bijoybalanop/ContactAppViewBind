@@ -24,11 +24,13 @@ public class AddNewContactActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_contact);
+
+
         contact= new Contact();
         //binding
 
         activityAddNewContactBinding= DataBindingUtil.setContentView(this,R.layout.activity_add_new_contact);
-        activityAddNewContactBinding.setContact(contact);
+        activityAddNewContactBinding.setContactbind(contact);
 
         clickHandler=new ActivityNewContactActivityClickHandler(this);
         activityAddNewContactBinding.setClickHandler(clickHandler);

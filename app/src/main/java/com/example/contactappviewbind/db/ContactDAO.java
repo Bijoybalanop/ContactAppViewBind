@@ -18,7 +18,7 @@ public interface ContactDAO {
 
      //contacts table name
     @Query( "SELECT * FROM contact_table")
-     List<Contact> getAllContacts();
+     List<Contact> getAll();
 
     @Delete
     void deleteContact(Contact contact);
